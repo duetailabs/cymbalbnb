@@ -12,20 +12,38 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const delayShowingVideo = 6000; // milliseconds
 
 function onGenerateVideo() {
-    // hide button
+    const idx = window.location.href.lastIndexOf("/");
+    if (idx <= 0) {
+        console.error("Invalid URL. Cannot parse listing ID.");
+        return;
+    }
+    // start animation
     $('#generate-video-btn').addClass("d-none");
-    // show spinner
     $('#video-generation-spinner').removeClass("d-none");
-    // set timer to reface the component
-    setTimeout(function () {
-
-        $('#card-video-generator').addClass("d-none");
-        $('#card-video-player').removeClass("d-none");
-
-    }, delayShowingVideo);
+    // trigger video generation
+    const listingId = window.location.href.substring(idx + 1);
+    fetch(`/video/${listingId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Response failed. Status: ${response.status}`);
+            }
+            return response.json(); // Parse the response body as JSON
+        })
+        .then(data => {
+            if (data.videoUri === undefined) {
+                throw new Error("Response does not contain valid info: field 'videoURI' is missing.");
+            }
+            $('#video-player').children('source').attr('src', data.videoUri);
+            $('#card-video-generator').addClass("d-none");
+            $('#card-video-player').removeClass("d-none");
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+            $('#video-generation-spinner').addClass("d-none");
+            $('#generate-video-btn').removeClass("d-none");
+        });
 }
 
 function onPlayVideoClip() {
