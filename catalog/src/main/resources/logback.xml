@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="com.example.bnb.catalog.LoggingEventGoogleCloudEncoder" />
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="Console" />
+    </root>
+</configuration>

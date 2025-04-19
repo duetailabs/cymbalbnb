@@ -1,0 +1,91 @@
+<!--
+ Copyright 2025 Google LLC
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+{{ define "listing" }}
+{{ template "header" . }}
+<!-- <div {{ with $.platform_css }} class="{{.}}" {{ end }}>
+  <span class="platform-flag">
+    {{$.platform_name}}
+  </span>
+</div> -->
+
+<main role="main">
+  <div class="container my-4 bg-white rounded">
+    <div class="row">
+      <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Listings</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{twoWords $.listing.Name}}</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-md-3" style="overflow: hidden; max-height: 50vh;">
+        <h2 class="fs-5 mb-3 text-wrap">{{ $.listing.Name }}</h2>
+        <img src="{{$.listing.FrontPictureURI}}" alt="{{ $.listing.Name }}" class="mb-3" style="object-fit: cover; object-position: center center;">
+      </div>
+      <div class="col-md-7">
+        <ul class="nav nav-tabs px-4 pt-3" id="listingTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="media-tab" data-bs-toggle="tab" data-bs-target="#media" type="button" role="tab" aria-controls="media" aria-selected="true">Media</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="property-tab" data-bs-toggle="tab" data-bs-target="#property" type="button" role="tab" aria-controls="property" aria-selected="false">Property Details</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pricing-tab" data-bs-toggle="tab" data-bs-target="#pricing" type="button" role="tab" aria-controls="pricing" aria-selected="false">Pricing</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="availability-tab" data-bs-toggle="tab" data-bs-target="#availability" type="button" role="tab" aria-controls="availability" aria-selected="false">Availability</button>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane fade show active p-4" id="media" role="tabpanel" aria-labelledby="media-tab">
+            <h3 class="fs-6">Photos</h3>
+            <div class="row g-2 mb-2">
+              {{ range maxImages $.listing.Images 3 }}
+              <div class="col-4 photo-item">
+                <img src="{{.URI}}" alt="{{.Label}}" class="img-fluid rounded">
+                <span>{{.Label}}</span>
+              </div>
+              {{- end }}
+            </div>
+            <a href="#" class="text-decoration-none">See all photos</a>
+            </section>
+          </div>
+          <div class="tab-pane fade p-4" id="property" role="tabpanel" aria-labelledby="property-tab">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Description</h5>
+                <p class="card-text">{{$.listing.Description}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade p-4" id="pricing" role="tabpanel" aria-labelledby="pricing-tab">
+            <h2 class="fs-5">Pricing</h2>
+            <p>Pricing information will be available soon.</p>
+          </div>
+          <div class="tab-pane fade p-4" id="availability" role="tabpanel" aria-labelledby="availability-tab">
+            <h2 class="fs-5">Availability</h2>
+            <p>Availability information will be available soon.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{{ template "footer" . }}
+{{ end }}
