@@ -67,6 +67,13 @@ func (s *FrontendServer) Default(w http.ResponseWriter, r *http.Request) {
 		RenderError(w, http.StatusInternalServerError, err)
 		return
 	}
+
+	for _, listing := range listings {
+		if listing.Price > 250.0 {
+			listing.featured = true
+		}
+	}
+
 	slog.Info("service listings", slog.String("listing", fmt.Sprintf("%+v", listings)))
 	data := map[string]interface{}{
 		"sessionID":   utils.Session(r.Context()),
