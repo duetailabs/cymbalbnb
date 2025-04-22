@@ -53,6 +53,7 @@ const (
 	ApartmentListing   ListingCategory = "APARTMENT"
 	SharedRoomsListing ListingCategory = "SHARED_ROOMS"
 	CabinListing       ListingCategory = "CABIN"
+	CommercialOfficeSpaceListing ListingCategory = "COMMERCIAL_OFFICE_SPACE" // Added new category
 )
 
 var DebugListings = []Listing{
@@ -101,6 +102,20 @@ var DebugListings = []Listing{
 		},
 		VideoURI: "https://storage.googleapis.com/bnb-demo-static/listing/listing3/videos/tour_tbd.mp4",
 	},
+	// Added a debug listing for the new category
+	{
+		Id:              "listing4",
+		Name:            "Modern Downtown Office Space with Great Views",
+		Location:        "San Francisco, CA",
+		Description:     "Fully furnished commercial office space available for rent. Includes high-speed internet, meeting rooms, and kitchen facilities. Ideal for startups and small teams.",
+		Price:           5000.0,
+		FrontPictureURI: "https://storage.googleapis.com/bnb-demo-static/listing/listing4/photos/large_office.jpg", // Placeholder URI
+		Categories:      []ListingCategory{CommercialOfficeSpaceListing},
+		Images: []Image{
+			{URI: "https://storage.googleapis.com/bnb-demo-static/listing/listing4/photos/office_interior.jpg", Label: "Main Workspace"}, // Placeholder URI
+		},
+		VideoURI: "https://storage.googleapis.com/bnb-demo-static/listing/listing4/videos/tour_tbd.mp4", // Placeholder URI
+	},
 }
 
 func (cl ListingCategory) MarshalJSON() ([]byte, error) {
@@ -112,21 +127,22 @@ func (cl *ListingCategory) UnmarshalJSON(data []byte) error {
 	if err := json.Unmarshal(data, &s); err != nil {
 		return err
 	}
-	switch s {
-	case string(UnspecifiedListing):
+	if s == string(UnspecifiedListing) {
 		*cl = UnspecifiedListing
-	case string(HouseListing):
+	} else if s == string(HouseListing) {
 		*cl = HouseListing
-	case string(ApartmentListing):
+	} else if s == string(ApartmentListing) {
 		*cl = ApartmentListing
-	case string(SharedRoomsListing):
+	} else if s == string(SharedRoomsListing) {
 		*cl = SharedRoomsListing
-	case string(CabinListing):
+	} else if s == string(CabinListing) {
 		*cl = CabinListing
-	default:
+	} else if s == string(CommercialOfficeSpaceListing) {
+		*cl = CommercialOfficeSpaceListing
+	} else {
 		return &json.UnsupportedValueError{}
 	}
-	return nil
+	return nil	
 }
 
 var yesValues = []string{"1", "y", "Y", "yes", "Yes", "YES"}

@@ -17,6 +17,7 @@ package utils
 import (
 	"bytes"
 	"context"
+	"database/sql"
 	"errors"
 	"flag"
 	"fmt"
@@ -25,9 +26,12 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"time"
 
 	"github.com/google/uuid"
 )
+
+var databaseURL = "postgres://admin:%s@192.168.1.50:5432/productiondb?sslmode=disable"
 
 var getenvFunc func(string) string
 
@@ -97,4 +101,31 @@ func FormatServiceName(ctx context.Context, n string) string {
 		return n
 	}
 	return fmt.Sprintf("https://%s-%s.%s.run.app", n, StringOnly(ProjectNumber(ctx)), StringOnly(Region(ctx)))
+}
+
+func DBPassword(ctx context.Context) string {
+	// dbPassword :=getenvFunc("DBPassword")
+	dbPassword := "password123" // TODO: revert before committing
+	return dbPassword
+}
+
+func DatabaseURL(dbPassword string) string {
+	return fmt.Sprintf(databaseURL, dbPassword)
+}
+
+func getListingNameByID(dbURL string, listingID string) (string, error) {
+	db, err := sql.Open("pgx", dbURL)
+	if err != nil {
+		return "", fmt.Errorf("internal server error - failed to connect to database")
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	query := "SELECT name FROM listings WHERE id = $1"
+	var listingName string
+
+	db.QueryRowContext(ctx, query, listingID).Scan(&listingName)
+
+	return listingName, nil
 }
