@@ -63,9 +63,10 @@ public class PostgresCatalogRepository implements CatalogRepository {
         Instant now = Instant.now();
         if (Duration.between(cachedTimestamp, now).compareTo(maxCacheAge) > 0) {
             Map<String, Listing> data = new HashMap<String, Listing>();
-            try (var c = connPool.getConnection()) {
-                ResultSet rs = c.prepareStatement(
-                        "select id,name,location,description,price,categories,front_picture_uri,images,video_uri from listing")
+            try {
+                ResultSet rs = connPool.getConnection()
+                        .prepareStatement(
+                                "select id,name,location,description,price,categories,front_picture_uri,images,video_uri from listing")
                         .executeQuery();
                 // print the results to the console
                 while (rs.next()) {
@@ -83,7 +84,8 @@ public class PostgresCatalogRepository implements CatalogRepository {
                             Float.valueOf(rs.getFloat("price")),
                             toCategories(categoryNames),
                             toImages(imageNames),
-                            (uriPrefix + rs.getString("video_uri")));
+                            (uriPrefix + rs.getString("video_uri"))
+                    );
                     data.put(entry.id(), entry);
                 }
             } catch (SQLException ex) {
@@ -144,7 +146,7 @@ public class PostgresCatalogRepository implements CatalogRepository {
         cachedListing = ImmutableMap.of();
         cachedTimestamp = Instant.MIN;
         LOGGER.atDebug()
-                .addKeyValue("new_age", seconds)
-                .log("@@@@@@@@@@@@@@@@@@@@@@@ cache was reset");
+            .addKeyValue("new_age", seconds)
+            .log("@@@@@@@@@@@@@@@@@@@@@@@ cache was reset");
     }
 }
