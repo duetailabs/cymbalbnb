@@ -69,11 +69,6 @@ public class VideoController {
                 videoClient = new VideoGenerationClient(projectId, region, "veo-2.0-generate-001");
         }
 
-        @PreDestroy
-        public void destroy() {
-                vertexAI.close();
-        }
-
         @PostMapping(path = "/newvideo", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
         public ResponseEntity<Video> create(@RequestBody CreateParameters payload) {
                 if (payload.imageUris() == null || payload.imageUris().length == 0
@@ -135,4 +130,11 @@ public class VideoController {
                         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
                 }
         }
+
+        @PreDestroy
+        public void destroy() {
+                vertexAI.close();
+        }
+
+        
 }
