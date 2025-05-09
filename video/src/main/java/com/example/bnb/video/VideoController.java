@@ -102,8 +102,7 @@ public class VideoController {
                                         .addKeyValue("image", payload.imageUris()[0])
                                         .log("image description generated");
                         // generate Veo2 prompt
-                        content = ContentMaker
-                                        .fromString(PROMPT_GENERATION_INSTRUCTIONS.formatted(description));
+                        content = ContentMaker.fromString(PROMPT_GENERATION_INSTRUCTIONS.formatted(description));
                         response = model.generateContent(content);
                         description = ResponseHandler.getText(response);
                         LOGGER.atDebug()
@@ -111,15 +110,15 @@ public class VideoController {
                                         .log("prompt for creating video generated");
                         // https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/veo-video-generation
                         var outputUri = "%s/videos/%s/".formatted(payload.storageBucket(), payload.id());
-                        var op = videoClient.generateVideos(
-                                        description,
-                                        new Image(payload.imageUris()[0], MediaType.IMAGE_JPEG_VALUE),
-                                        new GenerateVideoConfig(1, outputUri));
+                        var op = videoClient.generateVideos(description,new Image(payload.imageUris()[0], MediaType.IMAGE_JPEG_VALUE), new GenerateVideoConfig(1, outputUri));
                         while (op.done() == null || !op.done()) {
                                 op = videoClient.getStatus(op.name());
                         }
                         List<Video> videos = op.response().videos();
                         if (videos.size() > 0) {
+                                LOGGER.atDebug()
+                                        .addKeyValue("clips", String.valueOf(videos.size()))
+                                        .log("successfully generated video")
                                 return ResponseEntity.ok(videos.get(0));
                         }
                         return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
