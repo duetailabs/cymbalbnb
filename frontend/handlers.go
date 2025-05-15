@@ -57,6 +57,7 @@ func NewServer(config *Config) http.Handler {
 	mux.HandleFunc("/", srv.Default)
 	mux.HandleFunc("/listing/{id}", srv.Listing)
 	mux.HandleFunc("/loadgen", srv.Loadgen)
+	mux.HandleFunc("/video/{id}", srv.ListingVideo)
 
 	return mux
 }
@@ -122,6 +123,26 @@ func (s *FrontendServer) Loadgen(w http.ResponseWriter, r *http.Request) {
 	}
 	defer customizedDelay(time.Now(), delayms)
 	s.Default(w, r)
+}
+
+func (s *FrontendServer) ListingVideo(w http.ResponseWriter, r *http.Request) {
+	id := r.PathValue("id")
+	if id == "" {
+		RenderError(w, http.StatusBadRequest, errors.New("listing id is not specified"))
+		return
+	}
+	listing, err := listing(r.Context(), s.config.CatalogServiceURI, id)
+	if err != nil {
+		RenderError(w, http.StatusInternalServerError, fmt.Errorf("listing for id# %s does not exist", id))
+		return
+	}
+	uri, err := video(r.Context(), s.config.VideoServiceURI, listing)
+	if err != nil {
+		RenderError(w, http.StatusInternalServerError, fmt.Errorf("failed to generate video for id# %s", id))
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	fmt.Fprintf(w, fmt.Sprintf("{\"videoUri\":\"%s\"}", uri))
 }
 
 func RenderError(w http.ResponseWriter, httpCode int, err error) {

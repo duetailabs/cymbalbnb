@@ -30,6 +30,7 @@ type Config struct {
 	ServiceName       string
 	StaticPath        string
 	CatalogServiceURI string
+	VideoServiceURI   string
 }
 
 const (
@@ -50,6 +51,7 @@ func NewConfig(ctx context.Context, getenv func(string) string) *Config {
 		RevisionName:      utils.RevisionName(),
 		ServiceName:       utils.ServiceName(),
 		StaticPath:        utils.GetStringParam("static", "STATIC_PATH", "./_static/"),
-		CatalogServiceURI: catalogService,
+		CatalogServiceURI: utils.FormatServiceName(ctx, utils.GetEnv("CATALOG_SERVICE", ""), defaultCatalogService),
+		VideoServiceURI:   utils.FormatServiceName(ctx, utils.GetEnv("VIDEO_SERVICE", ""), defaultCatalogService),
 	}
 }
