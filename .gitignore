@@ -14,3 +14,6 @@
 # Python packages, environments
 **/__pycache__
 **/env
+
+# ssh
+**/.ssh/**

@@ -1,0 +1,226 @@
+[
+  {
+    "sessionId": 1749072201,
+    "messageId": 0,
+    "type": "user",
+    "message": "/help",
+    "timestamp": "2025-06-04T21:23:41.707Z"
+  },
+  {
+    "sessionId": 1749072201,
+    "messageId": 1,
+    "type": "user",
+    "message": "/memory show",
+    "timestamp": "2025-06-04T21:28:44.091Z"
+  },
+  {
+    "sessionId": 1749072201,
+    "messageId": 2,
+    "type": "user",
+    "message": "/tools",
+    "timestamp": "2025-06-04T21:28:57.987Z"
+  },
+  {
+    "sessionId": 1749072201,
+    "messageId": 3,
+    "type": "user",
+    "message": "/help",
+    "timestamp": "2025-06-04T21:29:07.426Z"
+  },
+  {
+    "sessionId": 1749072201,
+    "messageId": 4,
+    "type": "user",
+    "message": "upgrade the app from java version 89 to java 21, also remove any deprecated libraries like joda-time. Upgrade all the files in the @catalog/ folder to the latest java 21 code",
+    "timestamp": "2025-06-04T21:35:31.816Z"
+  },
+  {
+    "sessionId": 1749072201,
+    "messageId": 5,
+    "type": "user",
+    "message": "k",
+    "timestamp": "2025-06-04T21:38:02.041Z"
+  },
+  {
+    "sessionId": 1749072201,
+    "messageId": 6,
+    "type": "user",
+    "message": "show me the diff for the @catalog/src/main/java/com/example/bnb/catalog/LoggingEventGoogleCloudEncoder.java file",
+    "timestamp": "2025-06-04T21:39:26.316Z"
+  },
+  {
+    "sessionId": 1749072201,
+    "messageId": 7,
+    "type": "user",
+    "message": "yes",
+    "timestamp": "2025-06-04T21:40:19.621Z"
+  },
+  {
+    "sessionId": 1749072201,
+    "messageId": 8,
+    "type": "user",
+    "message": "update the @catalog/src/main/java/com/example/bnb/catalog/LoggingEventGoogleCloudEncoder.java file to use more ideiomatic java syntax",
+    "timestamp": "2025-06-04T21:42:00.207Z"
+  },
+  {
+    "sessionId": 1749087473,
+    "messageId": 0,
+    "type": "user",
+    "message": "explain the files in the @catalog/ folder",
+    "timestamp": "2025-06-05T01:38:47.539Z"
+  },
+  {
+    "sessionId": 1749087734,
+    "messageId": 0,
+    "type": "user",
+    "message": "/help",
+    "timestamp": "2025-06-05T01:42:23.268Z"
+  },
+  {
+    "sessionId": 1749140237,
+    "messageId": 0,
+    "type": "user",
+    "message": "explain the files in th @catalog/ folder",
+    "timestamp": "2025-06-05T16:17:33.452Z"
+  },
+  {
+    "sessionId": 1749140237,
+    "messageId": 1,
+    "type": "user",
+    "message": "help me upgrade this application from java 8 to java cversion 21",
+    "timestamp": "2025-06-05T16:18:36.751Z"
+  },
+  {
+    "sessionId": 1749147088,
+    "messageId": 0,
+    "type": "user",
+    "message": "/help",
+    "timestamp": "2025-06-05T18:11:31.057Z"
+  },
+  {
+    "sessionId": 1749147088,
+    "messageId": 1,
+    "type": "user",
+    "message": "/tools",
+    "timestamp": "2025-06-05T18:11:33.402Z"
+  },
+  {
+    "sessionId": 1749147088,
+    "messageId": 2,
+    "type": "user",
+    "message": "show me the contents of the settings_sample.json file",
+    "timestamp": "2025-06-05T18:12:07.097Z"
+  },
+  {
+    "sessionId": 1749147088,
+    "messageId": 3,
+    "type": "user",
+    "message": "yes",
+    "timestamp": "2025-06-05T18:12:16.978Z"
+  },
+  {
+    "sessionId": 1749147088,
+    "messageId": 4,
+    "type": "user",
+    "message": "~/.gemini/settings_sample.json",
+    "timestamp": "2025-06-05T18:12:33.611Z"
+  },
+  {
+    "sessionId": 1749147088,
+    "messageId": 5,
+    "type": "user",
+    "message": "/clear",
+    "timestamp": "2025-06-05T18:12:47.942Z"
+  },
+  {
+    "sessionId": 1749147088,
+    "messageId": 6,
+    "type": "user",
+    "message": "upgrade from java 8 to java 21",
+    "timestamp": "2025-06-05T18:12:59.786Z"
+  },
+  {
+    "sessionId": 1749147212,
+    "messageId": 0,
+    "type": "user",
+    "message": "/tools",
+    "timestamp": "2025-06-05T18:13:36.497Z"
+  },
+  {
+    "sessionId": 1749147212,
+    "messageId": 1,
+    "type": "user",
+    "message": "bat ~/.gemini/settings_sample.json",
+    "timestamp": "2025-06-05T18:13:54.352Z"
+  },
+  {
+    "sessionId": 1749147212,
+    "messageId": 2,
+    "type": "user",
+    "message": "upgrade from java 8 to java 21",
+    "timestamp": "2025-06-05T18:14:06.301Z"
+  },
+  {
+    "sessionId": 1749147331,
+    "messageId": 0,
+    "type": "user",
+    "message": "upgrade app from java 8 to java 21. upgrade dependencies. remove deprecated libraries. upgrade all files in the @catalog/ folder",
+    "timestamp": "2025-06-05T18:16:01.062Z"
+  },
+  {
+    "sessionId": 1749148025,
+    "messageId": 0,
+    "type": "user",
+    "message": "/help",
+    "timestamp": "2025-06-05T18:27:13.573Z"
+  },
+  {
+    "sessionId": 1749148025,
+    "messageId": 1,
+    "type": "user",
+    "message": "/tools",
+    "timestamp": "2025-06-05T18:27:15.931Z"
+  },
+  {
+    "sessionId": 1749148025,
+    "messageId": 2,
+    "type": "user",
+    "message": "upgrade this app from java 8 to java 21. upgrade dependenciess. remove deprecated libraries. upgrade all files in the @catalog/ folder",
+    "timestamp": "2025-06-05T18:28:03.136Z"
+  },
+  {
+    "sessionId": 1749157114,
+    "messageId": 0,
+    "type": "user",
+    "message": "/tools",
+    "timestamp": "2025-06-05T20:58:36.342Z"
+  },
+  {
+    "sessionId": 1749157114,
+    "messageId": 1,
+    "type": "user",
+    "message": "add 2 and 2",
+    "timestamp": "2025-06-05T20:58:41.841Z"
+  },
+  {
+    "sessionId": 1749157203,
+    "messageId": 0,
+    "type": "user",
+    "message": "give me the fibonacci sequence up to 100",
+    "timestamp": "2025-06-05T21:00:11.827Z"
+  },
+  {
+    "sessionId": 1749157203,
+    "messageId": 1,
+    "type": "user",
+    "message": "give me the factorial of 5",
+    "timestamp": "2025-06-05T21:00:31.077Z"
+  },
+  {
+    "sessionId": 1749157203,
+    "messageId": 2,
+    "type": "user",
+    "message": "multiply 5 and 4",
+    "timestamp": "2025-06-05T21:00:39.516Z"
+  }
+]
