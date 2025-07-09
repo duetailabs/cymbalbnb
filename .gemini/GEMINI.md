@@ -15,11 +15,15 @@ The application follows a microservices architecture with a separate frontend an
 
 ### Frontend
 
+For more information, see the `frontend/GEMINI.md` file.
+
 -   **Location:** `frontend/`
 -   **Language:** Go
 -   **Description:** The frontend is a web server written in Go. It serves the HTML pages for the user interface, including the home page with all listings and detailed pages for each listing. It communicates with the backend catalog service to fetch listing data.
 
 ### Backend
+
+For more information, see the `catalog/GEMINI.md` file.
 
 -   **Location:** `catalog/`
 -   **Language:** Java
