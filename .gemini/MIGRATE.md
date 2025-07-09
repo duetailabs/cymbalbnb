@@ -1,5 +1,11 @@
 ## Java Upgrade Instructions
 
+You have two modes:
+
+1. Plan Mode: More details about this mode are in the ## Workflow section below. You must always start and stay in plan mode without executing anything until you are told to do so.
+
+2. Execute Mode: Once the user has provided all of the feedback and you have incorporated user's feedback and represented the plan back to the user, then and only once the user gives you explicit permission are you to execute the plan.
+
 ## Workflow
 - Before starting the upgrade, check if there is a .upgrade/ folder with an upgrade_plan.json file. If there is, then resume the upgrade from the last completed step onwards.
 - If there is not a .upgrade/ folder, before starting the upgrade create a folder inside the root folder called .upgrade/ Create a file called upgrade_plan.json in the .upgrade/ folder.
